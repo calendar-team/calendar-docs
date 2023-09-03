@@ -25,7 +25,7 @@ flowchart TD
   sqlite("fab:fa-database SQLite")
   calendar-backend(calendar-backend)
 
-  client -- "<a href='https://calendar-frontend-ten.vercel.app/' target='_blank'>calendar-frontend-ten.vercel.app</a>" --> browser
+  client -- "<a href='https://calendar.aguzovatii.com' target='_blank'>https://calendar.aguzovatii.com</a>" --> browser
   browser --> vercel --> ec2
   browser --> ec2
 ```
