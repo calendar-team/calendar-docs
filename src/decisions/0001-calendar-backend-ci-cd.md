@@ -15,7 +15,7 @@ On every commit on any branch, the application is compiled and all the tests are
 ## Considered Options
 
 * `Jenkins`
-* `Github Actions` with `AWS CodeDeploy`: details in [this](https://aws.amazon.com/blogs/devops/integrating-with-github-actions-ci-cd-pipeline-to-deploy-a-web-app-to-amazon-ec2/) article
+* `Github Actions` with `AWS CodeDeploy`
 * `Github Actions` with `SSH` and `rsync`
 
 ## Decision Outcome
@@ -51,7 +51,7 @@ See the details in the article: [link](https://aws.amazon.com/blogs/devops/integ
 * Good, because we don't manage any services, Github Actions can be used out of the box
 * Good, because it decouples from any particular `EC2` instance, so `EC2` instances can be killed at any moment without disruption
 * Bad, because we need to configure additional `AWS` services, which makes us more coupled with `AWS`
-* Bad, because we need to configure multiple `AWS` services, which will slow down us
+* Bad, because we need to configure multiple `AWS` services, which will slow us down
 * Bad, because we need to configure multiple `AWS` services, which may imply additional costs
 
 ### `Github Actions` with `SSH` and `rsync`
