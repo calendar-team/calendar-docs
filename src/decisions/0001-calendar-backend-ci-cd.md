@@ -58,7 +58,6 @@ See the details in the article: [link](https://aws.amazon.com/blogs/devops/integ
 
 Explained through a sequence diagram:
 ```mermaid
-%%{init: {'theme':'dark'}}%%
 sequenceDiagram
     autonumber
     actor D as Developer
