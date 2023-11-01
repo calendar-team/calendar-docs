@@ -39,3 +39,5 @@ This guide will describe how to deploy on a new EC2 machine and how to configure
    - [REMOTE_USER](https://github.com/calendar-team/calendar-backend/settings/secrets/actions/REMOTE_USER) - set this to `ec2-user`
    - [CALENDAR_JWT_SIGNING_KEY](https://github.com/calendar-team/calendar-backend/settings/secrets/actions/CALENDAR_JWT_SIGNING_KEY) - the secret key used by the `calendar-backend` to sign jwt tokens
 4. Finally we can trigger `Deploy to EC2` workflow to deploy `calendar-backend` to the newly created EC2 instance
+
+You can find a sequence diagram explaining the process of deploying to EC2 [here](./decisions/0001-calendar-backend-ci-cd.md#github-actions-with-ssh-and-rsync).
