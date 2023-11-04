@@ -55,6 +55,27 @@ This guide will describe how to deploy on a new EC2 machine and how to configure
        - Choose the previously created IAM role:
          ![attach_iam_role_to_ec2_new_role.png](./images/attach_iam_role_to_ec2_new_role.png)
     10. Configure cron on EC2
+         - SSH into the EC2 machine
+         - install sqlite
+            ```
+            sudo yum install sqlite-devel
+            ```
+         - create a new file `db_backup.sh` in home directory (`/home/ec2-user`):
+            ```
+            cd /home/ec2-user
+            sqlite3 database.db3 ".backup 'database_backup.db3'"
+            aws s3 cp database.db3 s3://calendar-db-backup/database.db3
+            rm database_backup.db3
+            ```
+         - give exec permissions to the previous file:
+            ```
+            chmod +x db_backup.sh
+            ```
+         - run:
+            ```
+            echo "0 0,6,12,18 * * * root /home/ec2-user/db_backup.sh" | sudo tee -a /etc/crontab > /dev/null
+            ```
+            This will upload the database to S3 bucket every day at 00:00, 06:00, 12:00, 18:00 UTC time
 2. Configure the TLS certificate by following the tutorial from [here](https://certbot.eff.org/instructions?ws=other&os=pip). 
    
    Note that you will have to `ssh` into the EC2 machine for setting the certificate. To do this we will need:
