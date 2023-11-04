@@ -22,6 +22,39 @@ This guide will describe how to deploy on a new EC2 machine and how to configure
        - `8080` - this is the port that `calendar-backend` uses
     5. Allocate a 30 GB gp3 disk
        ![new_ec2_instance_for_backend_disk.png](./images/new_ec2_instance_for_backend_disk.png)
+    6. Create S3 bucket for DB backup
+       - Set `calendar-db-backup` as the name and use `eu-central-1` as the region:
+         ![new_s3_bucket_for_db_backup.png](./images/new_s3_bucket_for_db_backup.png)
+       - Keep `ACLs disabled` as object ownership option:
+         ![new_s3_bucket_for_db_backup_oo.png](./images/new_s3_bucket_for_db_backup_oo.png)
+       - Block public access:
+         ![new_s3_bucket_for_db_backup_pa.png](./images/new_s3_bucket_for_db_backup_pa.png)
+       - Enable versioning:
+         ![new_s3_bucket_for_db_backup_v.png](./images/new_s3_bucket_for_db_backup_v.png)
+       - Use default encryption:
+         ![new_s3_bucket_for_db_backup_enc.png](./images/new_s3_bucket_for_db_backup_enc.png)
+    7. Create a new IAM Policy for S3 put access:
+       - Choose `S3` as the service and `PutObject` as access level:
+         ![new_iam_policy_for_s3_upload.png](./images/new_iam_policy_for_s3_upload.png)
+       - Add a new ARN for `calendar-db-backup` bucket and `database.db3` file:
+         ![new_iam_policy_for_s3_upload_arn.png](./images/new_iam_policy_for_s3_upload_arn.png)
+       - Use `calendar_db_backup` as the pollicy name:
+         ![new_iam_policy_for_s3_upload_name.png](./images/new_iam_policy_for_s3_upload_name.png)
+    8. Create a new IAM role
+       - Choose `AWS service` as the trusted entity type:
+         ![new_iam_role_for_s3_upload.png](./images/new_iam_role_for_s3_upload.png)
+       - Use `EC2` as the use case:
+         ![new_iam_role_for_s3_upload_uc.png](./images/new_iam_role_for_s3_upload_uc.png)
+       - Choose the previously created IAM Policy under permissions policies:
+         ![new_iam_role_for_s3_upload_policy.png](./images/new_iam_role_for_s3_upload_policy.png)
+       - Use `calendar_db_backup` as the name:
+         ![new_iam_role_for_s3_upload_name.png](./images/new_iam_role_for_s3_upload_name.png)
+    9. Attach role to EC2 instance:
+       - Choose the EC2 instance, then click on `Actions`, then click on `Modify IAM role` under `Security`
+         ![attach_iam_role_to_ec2.png](./images/attach_iam_role_to_ec2.png)
+       - Choose the previously created IAM role:
+         ![attach_iam_role_to_ec2_new_role.png](./images/attach_iam_role_to_ec2_new_role.png)
+    10. Configure cron on EC2
 2. Configure the TLS certificate by following the tutorial from [here](https://certbot.eff.org/instructions?ws=other&os=pip). 
    
    Note that you will have to `ssh` into the EC2 machine for setting the certificate. To do this we will need:
