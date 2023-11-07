@@ -18,7 +18,7 @@ This guide will describe how to deploy on a new EC2 machine and how to configure
        ![new_ec2_instance_for_backend_sg.png](./images/new_ec2_instance_for_backend_sg.png)
        Or we can create a new security group, we will need the following ports to be added under the inbound rules:
        - `22` - `SSH` port used by [our github-actions](https://github.com/calendar-team/calendar-backend/blob/master/.github/workflows/deploy_on_ec2.yml) workflow to deploy new version of `calendar-backend`
-       - `443` - used by certbot to renew the TLS certificate (details will follow in a step below)
+       - `80` - used by certbot to renew the TLS certificate (details will follow in a step below)
        - `8080` - this is the port that `calendar-backend` uses
     5. Allocate a 30 GB gp3 disk
        ![new_ec2_instance_for_backend_disk.png](./images/new_ec2_instance_for_backend_disk.png)
