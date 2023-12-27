@@ -16,3 +16,4 @@ TBA
 - [ADRs](./decisions/adrs.md)
   - [0000-use-markdown-any-decision-records](./decisions/0000-use-markdown-any-decision-records.md)
   - [0001-calendar-backend-ci-cd](./decisions/0001-calendar-backend-ci-cd.md)
+  - [0002-calendar-authentication](./decisions/0002-calendar-authentication.md)
