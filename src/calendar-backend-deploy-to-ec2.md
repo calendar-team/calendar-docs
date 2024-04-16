@@ -56,6 +56,28 @@ This guide will describe how to deploy on a new EC2 machine and how to configure
          ![attach_iam_role_to_ec2_new_role.png](./images/attach_iam_role_to_ec2_new_role.png)
     10. Configure cron on EC2
          - SSH into the EC2 machine
+         - Install `crond` because it's not present by default:
+            - install `cronie`
+               ```
+               sudo dnf install cronie
+               ```
+            - enable `crond`
+               ```
+               sudo systemctl enable crond
+               ```
+            - check that `crond` is running as expected
+               ```
+               sudo systemctl status crond
+               ```
+               The result should look like:
+               ```
+               ● crond.service - Command Scheduler
+               Loaded: loaded (/usr/lib/systemd/system/crond.service; enabled; preset: enabled)
+               Active: active (running) since Tue 2024-04-16 06:59:54 UTC; 4min 57s ago
+               Main PID: 1858743 (crond)
+               Tasks: 2 (limit: 510)
+               ...
+               ```
          - install sqlite
             ```
             sudo yum install sqlite-devel
