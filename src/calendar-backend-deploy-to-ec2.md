@@ -56,7 +56,7 @@ This guide will describe how to deploy on a new EC2 machine and how to configure
          ![attach_iam_role_to_ec2_new_role.png](./images/attach_iam_role_to_ec2_new_role.png)
     10. Configure cron on EC2
          - SSH into the EC2 machine
-         - Install `crond` becaues it's not present by default:
+         - Install `crond` because it's not present by default:
             - install `cronie`
                ```
                sudo dnf install cronie
